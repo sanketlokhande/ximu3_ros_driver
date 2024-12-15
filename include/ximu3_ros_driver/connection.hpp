@@ -75,7 +75,7 @@ class connection
                 ximu3::XIMU3_connection_free(this_connection);
                 return;
             }
-            printf("Connection successful. Check output at $ rostopic echo /ximu3_sensor\n");  
+            printf("Connection successful. Check output at $ rostopic echo /ximu_sensor\n");  
           }
           else
           {
@@ -162,6 +162,10 @@ class connection
             const char* const commands[] = { "{\"strobe\":null}" };
             const ximu3::XIMU3_CharArrays responses = ximu3::XIMU3_connection_send_commands(this_connection, commands, 1, 2, 500);
             ximu3::XIMU3_char_arrays_free(responses); 
+
+            const char* const commands2[] = { "{\"inertial_message_rate_divisor\":1}" };
+            const ximu3::XIMU3_CharArrays responses2 = ximu3::XIMU3_connection_send_commands(this_connection, commands2, 1, 2, 500);
+            ximu3::XIMU3_char_arrays_free(responses2); 
 
             this->addInertialCallback(inertialCallback);
             this->addMagnetometerCallback(magnetometerCallback);
