@@ -42,10 +42,13 @@ int main(int argc, char **argv)
 
     ros::Rate loop_rate(200);
 
+    imuSensorMessage.header.frame_id = "0";
+    imuSensorMessage.header.seq = 0;
+
     while (ros::ok())
     {
-      imuSensorMessage.header.stamp = (ros::Time)(sensorMessage.inertialMessage.timestamp);
-
+      imuSensorMessage.header.stamp = ros::Time::now();
+      imuSensorMessage.header.seq++;
       imuSensorMessage.linear_acceleration.x = (sensorMessage.inertialMessage.accelerometer_x * 9.8000);
       imuSensorMessage.linear_acceleration.y = (sensorMessage.inertialMessage.accelerometer_y * 9.8000);
       imuSensorMessage.linear_acceleration.z = (sensorMessage.inertialMessage.accelerometer_z * 9.8000);
