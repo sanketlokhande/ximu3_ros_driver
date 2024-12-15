@@ -1,0 +1,10 @@
+uint64 timestamp
+float32 rot_xx
+float32 rot_xy
+float32 rot_xz
+float32 rot_yx
+float32 rot_yy
+float32 rot_yz
+float32 rot_zx
+float32 rot_zy
+float32 rot_zz
