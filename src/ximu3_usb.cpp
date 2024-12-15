@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     std::string topicName = "/ximu_sensor/"; 
     ros::Publisher imuSensorMessage_pub = n.advertise<sensor_msgs::Imu>(topicName ,1000);
 
-    ros::Rate loop_rate(200);
+    ros::Rate loop_rate(400);
 
     imuSensorMessage.header.frame_id = "0";
     imuSensorMessage.header.seq = 0;
@@ -49,6 +49,7 @@ int main(int argc, char **argv)
     {
       imuSensorMessage.header.stamp = ros::Time::now();
       imuSensorMessage.header.seq++;
+
       imuSensorMessage.linear_acceleration.x = (sensorMessage.inertialMessage.accelerometer_x * 9.8000);
       imuSensorMessage.linear_acceleration.y = (sensorMessage.inertialMessage.accelerometer_y * 9.8000);
       imuSensorMessage.linear_acceleration.z = (sensorMessage.inertialMessage.accelerometer_z * 9.8000);
